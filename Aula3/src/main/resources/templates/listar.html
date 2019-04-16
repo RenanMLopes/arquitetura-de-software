@@ -18,6 +18,7 @@
 				<th>Humidade relativa do ar</th>
 				<th>Descrição</th>
 				<th>Data</th>
+				<th>Cidade</th>
 				<th>Latitude</th>
 				<th>Longitude</th>
 				</tr>
@@ -25,27 +26,32 @@
 			<tbody>
 				<tr th:each="dia : ${dias}">
 				<td th:text="${dia.nome}"></td>
+				
 				<td th:text="${dia.getTempo().getTmin()}"></td>
 				<td th:text="${dia.getTempo().getTmax()}"></td>
 				<td th:text="${dia.getTempo().getHumidade()}"></td>
 				<td th:text="${dia.getTempo().getDescricao()}"></td>
 				<td th:text="${dia.getTempo().getData()}"></td>
-				<td th:text="${dia.getTempo().getLatitude()}"></td>
-				<td th:text="${dia.getTempo().getLongitude()}"></td>
+				
+				<td th:text="${dia.getCidade().getNome()}"></td>
+				<td th:text="${dia.getCidade().getLatitude()}"></td>
+				<td th:text="${dia.getCidade().getLongitude()}"></td>
 				</tr>
 			</tbody>
 		</table>
 
 		<form class="form-inline" method="POST" th:object="${dia}" th:action="@{/listar}" style="margin: 20px 0">
 			<input type="text" class="form-control" placeholder="Nome" th:field="*{nome}"/>
-			<input type="text" class="form-control" placeholder="Nome do tempo" th:field="*{tempo.nome}"/>
+			
 			<input type="number" class="form-control" placeholder="Temperatura máxima" th:field="*{tempo.tmax}"/>
 			<input type="number" class="form-control" placeholder="Temepratura mínima" th:field="*{tempo.tmin}"/>
 			<input type="number" class="form-control" placeholder="Humidade" th:field="*{tempo.humidade}"/>
 			<input type="text" class="form-control" placeholder="Descrição" th:field="*{tempo.descricao}"/>
 			<input type="text" class="form-control" placeholder="Data" th:field="*{tempo.data}"/>
-			<input type="number" class="form-control" placeholder="Latitude" th:field="*{tempo.latitude}"/>
-			<input type="number" class="form-control" placeholder="Longitude" th:field="*{tempo.longitude}"/>
+			
+			<input type="number" class="form-control" placeholder="Cidade" th:field="*{cidade.nome}"/>
+			<input type="number" class="form-control" placeholder="Latitude" th:field="*{cidade.latitude}"/>
+			<input type="number" class="form-control" placeholder="Longitude" th:field="*{cidade.longitude}"/>
 			<button type="submit" class="btn btn-primary">Adicionar</button>
 		</form>
 	

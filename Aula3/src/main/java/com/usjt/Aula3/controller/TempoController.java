@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.usjt.Aula3.model.Cidade;
 import com.usjt.Aula3.model.Dia;
 import com.usjt.Aula3.model.Tempo;
 import com.usjt.Aula3.service.DiaService;
@@ -34,8 +35,13 @@ public class TempoController {
 	@SuppressWarnings("finally")
 	@PostMapping("/listar")
 	public String cadastrar(Dia dia) {
+		
+		Cidade cidade = new Cidade();
+		cidade.setNome(dia.getCidade().getNome());
+		cidade.setLatitude(dia.getCidade().getLatitude());
+		cidade.setLongitude(dia.getCidade().getLongitude());
+		
 		Tempo tempo = new Tempo();
-		tempo.setNome(dia.getTempo().getNome());
 		tempo.setTmax(dia.getTempo().getTmax());
 		tempo.setTmin(dia.getTempo().getTmin());
 		tempo.setHumidade(dia.getTempo().getHumidade());
@@ -45,7 +51,7 @@ public class TempoController {
 		tempo.setLongitude(dia.getTempo().getLongitude());
 	
 		try {
-		diaService.save(dia, tempo);
+		diaService.save(dia, tempo, cidade);
 		}catch (Exception e) {
 			System.out.print(e.getMessage());
 		}finally {

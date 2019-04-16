@@ -8,6 +8,7 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Service;
 
+import com.usjt.Aula3.model.Cidade;
 import com.usjt.Aula3.model.Dia;
 import com.usjt.Aula3.model.Tempo;
 import com.usjt.Aula3.persistence.JPAUtil;
@@ -15,13 +16,15 @@ import com.usjt.Aula3.persistence.JPAUtil;
 @Service
 public class DiaService {
 	
-	public void save(Dia dia, Tempo tempo) {
+	public void save(Dia dia, Tempo tempo, Cidade cidade) {
 		EntityManager manager = JPAUtil.getEntityManager();
 		EntityTransaction transaction = manager.getTransaction();
 		transaction.begin();
 		
+		dia.setCidade(cidade);
 		dia.setTempo(tempo);
 		
+		manager.persist(cidade);
 		manager.persist(tempo);
 		manager.persist(dia);
 		transaction.commit();

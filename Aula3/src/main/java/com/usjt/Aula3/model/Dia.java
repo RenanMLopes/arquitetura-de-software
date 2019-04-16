@@ -18,6 +18,17 @@ public class Dia {
 		this.id = id;
 		this.nome = nome;
 	}
+	
+	@OneToOne(optional=false)
+	private Cidade cidade;
+
+	public Cidade getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
 
 	@OneToOne(optional=false)
 	private Tempo tempo;

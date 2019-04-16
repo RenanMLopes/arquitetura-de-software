@@ -1,13 +1,9 @@
 package com.usjt.Aula3.teste;
 
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import com.usjt.Aula3.model.Cidade;
 import com.usjt.Aula3.model.Dia;
 import com.usjt.Aula3.model.Tempo;
 import com.usjt.Aula3.persistence.JPAUtil;
@@ -20,8 +16,12 @@ public class TesteAdicaoDia {
 		
 		Dia dia = new Dia();
 		Tempo tempo = new Tempo();
+		Cidade cidade = new Cidade();
 		
-		tempo.setNome("feira");
+		cidade.setNome("São Paulo");
+		cidade.setLatitude(2.232323);
+		cidade.setLongitude(3.34345);
+		
 		tempo.setTmax(4.0);
 		tempo.setTmin(4.0);
 		tempo.setHumidade(45.0);
@@ -31,8 +31,11 @@ public class TesteAdicaoDia {
 		tempo.setData("22-02-2018");
 		
 		dia.setNome("segunda");
+		
+		dia.setCidade(cidade);
 		dia.setTempo(tempo);
 
+		manager.persist(cidade);
 		manager.persist(tempo);
 		manager.persist(dia);
 		transaction.commit();

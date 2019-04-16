@@ -14,7 +14,6 @@ public class Tempo {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	private String nome;
 	private Double tmax;
 	private Double tmin;
 	private Double humidade;
@@ -29,14 +28,6 @@ public class Tempo {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 	public Double getHumidade() {
